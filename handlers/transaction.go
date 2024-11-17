@@ -34,7 +34,7 @@ func TransactionHandler(w http.ResponseWriter, r *http.Request) {
 	// Validate the amount
 	if !utils.IsValidAmount(transaction.Amount) {
 		utils.Error("Invalid amount format", nil)
-		http.Error(w, "Amount must be a string with up to 2 decimal places", http.StatusBadRequest)
+		http.Error(w, "Invalid amount format - Amount must be a positive number with up to 2 decimal places", http.StatusBadRequest)
 		return
 	}
 

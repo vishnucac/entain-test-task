@@ -8,6 +8,7 @@ import (
 
 	"entain-test-task/db"
 	"entain-test-task/handlers"
+	"entain-test-task/middlewares"
 	"entain-test-task/utils"
 
 	"github.com/gorilla/mux"
@@ -26,6 +27,9 @@ func main() {
 	db.SeedUsers()
 
 	r := mux.NewRouter()
+
+	// Apply middleware only for /user/{userId}/transaction
+	r.HandleFunc("/user/{userId}/transaction", middlewares.CheckSourceTypeForTransaction(handlers.TransactionHandler)).Methods("POST")
 	r.HandleFunc("/user/{userId}/transaction", handlers.TransactionHandler).Methods("POST")
 	r.HandleFunc("/user/{userId}/balance", handlers.BalanceHandler).Methods("GET")
 	r.HandleFunc("/status", handlers.PingHandler).Methods("GET")

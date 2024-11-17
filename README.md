@@ -40,7 +40,7 @@ docker-compose down
   - Request body:
   {
     "state": "win", 
-    "amount": 50.00,
+    "amount": "50.00",
     "transactionId": "1234"
   }
 
@@ -54,4 +54,4 @@ docker-compose down
   }
 
 ## Running Tests
-go test ./..
+go test ./... -v
